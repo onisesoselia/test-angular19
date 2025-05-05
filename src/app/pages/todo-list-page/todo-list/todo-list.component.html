@@ -1,0 +1,17 @@
+@if(todos()){
+  <ol class="list-group list-group-numbered">
+    @for(todo of todos(); track $index){
+  
+    <li class="list-group-item" style="display: flex; align-items: center;">
+      <div style="width: 100%; margin-left: 20px;">
+        <app-todo [todo]="todo" />
+      </div>
+    </li>
+    }
+    
+    @empty {
+      <h2>არ არის ჩანაწერები</h2>
+     }
+  </ol>
+}
+

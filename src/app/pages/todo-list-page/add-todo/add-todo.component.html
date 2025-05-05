@@ -1,0 +1,14 @@
+
+<form [formGroup]="form" (ngSubmit)="addNewTodo()">
+    <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add Todo"
+          formControlName="todo"
+        />
+        <button [disabled]="!(form.valid && form.controls['todo'].value.trim().length)" class="btn btn-primary btn-blue" type="submit">
+          Button
+        </button>
+      </div>
+</form>
