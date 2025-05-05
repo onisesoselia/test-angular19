@@ -1,1 +1,60 @@
-<p>todo-details works!</p>
+@if(isLoading()){
+<app-loading />
+}
+
+<button class="btn btn-primary mb-5" routerLink="/">Back</button>
+
+<p>
+  Todo Name: <b> {{ todo()?.name }}</b>
+</p>
+
+<p>
+  Todo Status:
+  <b [ngStyle]="{ color: todo()?.completed ? 'green' : 'red' }"
+    >{{ todo()?.completed }}
+  </b>
+</p>
+
+<br /><br />
+
+<button (click)="showEditForm.set(!showEditForm())" class="btn mb-5" [ngClass]="{'btn-danger': showEditForm() ,'btn-primary': !showEditForm() }">{{showEditForm() ? 'Cancel' : 'Edit Information Block'}}</button>
+
+@if(showEditForm()){ @if(form){
+<form [formGroup]="form" (ngSubmit)="submitChangeInfo()">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label"
+      >New Todo Name</label
+    >
+    <input
+      formControlName="name"
+      type="text"
+      class="form-control"
+      placeholder="Enter Todo Name"
+    />
+  </div>
+
+  <div class="col-12">
+    <div class="form-check">
+      <label class="form-check-label" for="completed"> Completed </label>
+      <input
+        formControlName="completed"
+        class="form-check-input"
+        type="checkbox"
+        id="completed"
+      />
+    </div>
+  </div>
+
+  <button
+    [disabled]="
+      !(form.valid && form.controls['name'].value.trim().length) ||
+      checked ||
+      !form.value
+    "
+    type="submit"
+    class="btn btn-primary w-100 mt-3"
+  >
+    Change
+  </button>
+</form>
+} }

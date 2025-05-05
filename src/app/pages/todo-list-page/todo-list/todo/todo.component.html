@@ -4,14 +4,15 @@
       class="form-check-input me-1"
       type="checkbox"
       id="todo"
-      [checked]="todo().completed"
+      [(ngModel)]="todo().completed"
+      #checkBox
+      (change)="updateTodoItemStatus()"
     />
     <label class="form-check-label" for="todo">{{ todo().name }}</label>
   </div>
   
   <div>
     <button
-      (click)="removeTodoItem(todo().id)"
       type="button"
       class="btn btn-primary w-5 me-2"
       [routerLink]="todo().id"
